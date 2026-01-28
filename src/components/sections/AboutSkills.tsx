@@ -6,12 +6,12 @@ import { GlassCard } from "../ui/GlassCard";
 import { Code2, Cpu, Globe, Layout, Palette, Terminal } from "lucide-react";
 
 const skills = [
-    { name: "Java (DSA)", level: 90, icon: <Code2 className="w-5 h-5" /> },
-    { name: "Kotlin / Android SDK", level: 85, icon: <Cpu className="w-5 h-5" /> },
-    { name: "React / Next.js", level: 80, icon: <Layout className="w-5 h-5" /> },
-    { name: "SQL / Firebase", level: 75, icon: <Terminal className="w-5 h-5" /> },
-    { name: "Tailwind / CSS", level: 90, icon: <Palette className="w-5 h-5" /> },
-    { name: "Full Stack Dev", level: 70, icon: <Globe className="w-5 h-5" /> },
+    { name: "Java (DSA)", level: 90, icon: <Code2 className="w-5 h-5" />, category: "Core" },
+    { name: "Kotlin / Android SDK", level: 85, icon: <Cpu className="w-5 h-5" />, category: "Mobile" },
+    { name: "React / Next.js", level: 80, icon: <Layout className="w-5 h-5" />, category: "Web" },
+    { name: "SQL / Firebase", level: 75, icon: <Terminal className="w-5 h-5" />, category: "Backend" },
+    { name: "Tailwind / CSS", level: 95, icon: <Palette className="w-5 h-5" />, category: "Design" },
+    { name: "Full Stack Dev", level: 70, icon: <Globe className="w-5 h-5" />, category: "Web" },
 ];
 
 export const AboutAndSkills = () => {
@@ -35,18 +35,22 @@ export const AboutAndSkills = () => {
                                 development, exploring the power of React and Next.js.
                             </p>
                             <div className="pt-4 grid grid-cols-2 gap-4">
-                                <GlassCard className="p-5 flex items-center gap-3" hoverGlow={false}>
-                                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary border border-primary/20">
-                                        <span className="font-bold">2+</span>
-                                    </div>
-                                    <span className="text-xs font-semibold uppercase tracking-widest">Years of Learning</span>
-                                </GlassCard>
-                                <GlassCard className="p-5 flex items-center gap-3" hoverGlow={false}>
-                                    <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary border border-secondary/20">
-                                        <span className="font-bold">10+</span>
-                                    </div>
-                                    <span className="text-xs font-semibold uppercase tracking-wider">Projects Made</span>
-                                </GlassCard>
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                    <GlassCard className="p-5 flex items-center gap-3 group transition-all duration-300 hover:border-primary/50" hoverGlow={true}>
+                                        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
+                                            <span className="font-bold">2+</span>
+                                        </div>
+                                        <span className="text-xs font-semibold uppercase tracking-widest">Years of Learning</span>
+                                    </GlassCard>
+                                </motion.div>
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                    <GlassCard className="p-5 flex items-center gap-3 group transition-all duration-300 hover:border-secondary/50" hoverGlow={true}>
+                                        <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary border border-secondary/20 group-hover:scale-110 transition-transform">
+                                            <span className="font-bold">10+</span>
+                                        </div>
+                                        <span className="text-xs font-semibold uppercase tracking-wider">Projects Made</span>
+                                    </GlassCard>
+                                </motion.div>
                             </div>
                         </div>
                     </div>

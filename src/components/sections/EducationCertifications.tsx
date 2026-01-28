@@ -62,7 +62,8 @@ const certifications = [
 
 export const Education = () => {
     return (
-        <section id="education" className="py-24 px-4 bg-background/50">
+        <section id="education" className="py-24 px-4 bg-background/50 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
             <div className="max-w-4xl mx-auto">
                 <Reveal>
                     <div className="text-center mb-16">
@@ -73,29 +74,49 @@ export const Education = () => {
                     </div>
                 </Reveal>
 
-                <StaggerContainer>
-                    <div className="space-y-6">
+                <div className="relative pl-8 md:pl-0">
+                    {/* Vertical Timeline Line */}
+                    <motion.div
+                        initial={{ height: 0 }}
+                        whileInView={{ height: "100%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                        className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 w-px bg-gradient-to-b from-primary via-secondary to-transparent"
+                    />
+
+                    <div className="space-y-12">
                         {education.map((item, index) => (
-                            <StaggerItem key={index}>
-                                <GlassCard className="flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-primary/40 transition-colors group">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-14 h-14 rounded-2xl glass flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                className={`relative flex flex-col items-start ${index % 2 === 0 ? "md:items-end md:pr-[50%] md:mr-4" : "md:pl-[50%] md:ml-4"
+                                    }`}
+                            >
+                                {/* Timeline Dot */}
+                                <div className="absolute left-[-36px] md:left-1/2 md:-translate-x-1/2 top-0 w-4 h-4 rounded-full bg-background border-2 border-primary shadow-[0_0_10px_rgba(168,85,247,0.5)] z-10" />
+
+                                <GlassCard className="w-full hover:border-primary/40 transition-all duration-300 group p-6">
+                                    <div className={`flex flex-col gap-4 ${index % 2 === 0 ? "md:items-end md:text-right" : ""}`}>
+                                        <div className={`w-12 h-12 rounded-xl glass flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform ${index % 2 === 0 ? "md:ml-auto" : ""}`}>
                                             {item.icon}
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
-                                            <p className="text-white/60 text-sm font-medium">{item.institution}</p>
+                                            <span className="text-primary font-bold text-xs uppercase tracking-widest block mb-2">{item.period}</span>
+                                            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">{item.title}</h3>
+                                            <p className="text-white/60 text-sm font-medium mb-4">{item.institution}</p>
+                                            <span className="inline-block px-3 py-1 rounded-lg bg-primary/10 text-primary font-bold text-sm border border-primary/20">
+                                                {item.score}
+                                            </span>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col md:items-end shrink-0">
-                                        <span className="text-primary font-bold text-lg">{item.score}</span>
-                                        <span className="text-white/30 text-xs font-bold uppercase tracking-widest">{item.period}</span>
-                                    </div>
                                 </GlassCard>
-                            </StaggerItem>
+                            </motion.div>
                         ))}
                     </div>
-                </StaggerContainer>
+                </div>
             </div>
         </section>
     );

@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #a855f7; /* Purple */
-  --color-secondary: #3b82f6; /* Blue */
-  --color-accent: #06b6d4; /* Cyan */
+  --color-primary: #a855f7;
+  /* Purple */
+  --color-secondary: #3b82f6;
+  /* Blue */
+  --color-accent: #06b6d4;
+  /* Cyan */
   --color-background: #030014;
   --color-foreground: #ffffff;
-  
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui;
 }
@@ -27,7 +30,7 @@ body {
   .glass {
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
-  
+
   .glass-morphism {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
@@ -46,16 +49,32 @@ body {
   .animate-pulse-slow {
     animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.5;
     transform: scale(1.1);
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

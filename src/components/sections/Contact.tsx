@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { GlassCard } from "../ui/GlassCard";
 import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
@@ -111,47 +111,47 @@ export const Contact = () => {
                                 <input type="hidden" name="access_key" value="03c8c96d-c3af-4da2-89e7-91c8392330ed" />
 
                                 <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1">Full Name</label>
+                                    <div className="space-y-2 group">
+                                        <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1 group-focus-within:text-primary transition-colors">Full Name</label>
                                         <input
                                             type="text"
                                             name="name"
                                             required
                                             placeholder="John Doe"
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all focus:ring-2 focus:ring-primary/20"
                                         />
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1">Email Address</label>
+                                    <div className="space-y-2 group">
+                                        <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1 group-focus-within:text-secondary transition-colors">Email Address</label>
                                         <input
                                             type="email"
                                             name="email"
                                             required
                                             placeholder="john@example.com"
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all focus:ring-2 focus:ring-primary/20"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1">Subject</label>
+                                <div className="space-y-2 group">
+                                    <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1 group-focus-within:text-accent transition-colors">Subject</label>
                                     <input
                                         type="text"
                                         name="subject"
                                         required
                                         placeholder="Project Inquiry"
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all"
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all focus:ring-2 focus:ring-primary/20"
                                     />
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1">Message</label>
+                                <div className="space-y-2 group">
+                                    <label className="text-xs font-bold text-white/40 uppercase tracking-widest px-1 group-focus-within:text-primary transition-colors">Message</label>
                                     <textarea
                                         name="message"
                                         required
                                         rows={4}
                                         placeholder="Tell me about your project..."
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all resize-none"
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/10 transition-all resize-none focus:ring-2 focus:ring-primary/20"
                                     ></textarea>
                                 </div>
 
@@ -160,18 +160,35 @@ export const Contact = () => {
                                     disabled={status === "loading"}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full py-4 rounded-xl bg-primary text-white font-bold flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full py-4 rounded-xl bg-primary text-white font-bold flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group/btn"
                                 >
-                                    {status === "loading" ? "Sending..." : "Send Message"}
-                                    <Send className="w-4 h-4" />
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        {status === "loading" ? "Sending..." : "Send Message"}
+                                        <Send className={`w-4 h-4 ${status === "loading" ? "animate-pulse" : "group-hover/btn:translate-x-1 transition-transform"}`} />
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                 </motion.button>
 
-                                {status === "success" && (
-                                    <p className="text-green-400 text-sm text-center font-medium">Message sent successfully! I&apos;ll get back to you soon.</p>
-                                )}
-                                {status === "error" && (
-                                    <p className="text-red-400 text-sm text-center font-medium">Ops! Something went wrong. Please try again.</p>
-                                )}
+                                <AnimatePresence mode="wait">
+                                    {status === "success" && (
+                                        <motion.p
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="text-green-400 text-sm text-center font-medium bg-green-400/10 py-3 rounded-lg border border-green-400/20"
+                                        >
+                                            Message sent successfully! I&apos;ll get back to you soon.
+                                        </motion.p>
+                                    )}
+                                    {status === "error" && (
+                                        <motion.p
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="text-red-400 text-sm text-center font-medium bg-red-400/10 py-3 rounded-lg border border-red-400/20"
+                                        >
+                                            Ops! Something went wrong. Please try again.
+                                        </motion.p>
+                                    )}
+                                </AnimatePresence>
                             </form>
                         </GlassCard>
                     </Reveal>
