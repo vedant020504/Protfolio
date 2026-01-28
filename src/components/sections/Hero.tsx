@@ -37,8 +37,9 @@ export const Hero = () => {
     return (
         <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-4 overflow-hidden">
             {/* Abstract Background Shapes */}
-            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-primary/20 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-secondary/20 rounded-full blur-[120px] -z-10" />
+            <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow" />
+            <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:30px_30px] -z-20 opacity-30" />
 
             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center z-10 w-full">
                 <motion.div
@@ -134,31 +135,29 @@ export const Hero = () => {
                         <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-[-15px] border border-dashed border-primary/30 rounded-full"
+                            className="absolute inset-[-20px] border border-dashed border-primary/40 rounded-full"
                         />
                         <motion.div
                             animate={{ rotate: -360 }}
                             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-[-30px] border border-dashed border-secondary/20 rounded-full"
+                            className="absolute inset-[-40px] border border-dashed border-secondary/30 rounded-full"
                         />
 
                         {/* Profile Image Wrapper */}
                         <motion.div
                             animate={{ y: [0, -15, 0] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                            className="w-full h-full rounded-3xl overflow-hidden glass border-2 border-white/10 shadow-2xl relative z-10"
+                            className="w-full h-full rounded-3xl overflow-hidden glass border-2 border-white/20 shadow-2xl relative z-10 p-2"
                         >
-                            <div className="w-full h-full bg-gradient-to-br from-primary/20 via-background to-secondary/20 flex items-center justify-center group overflow-hidden">
-                                <div className="text-white/20 group-hover:text-primary transition-colors flex flex-col items-center">
-                                    <div className="w-16 h-16 rounded-full border-4 border-white/10 flex items-center justify-center mb-3">
-                                        <span className="text-3xl font-bold font-display">VS</span>
-                                    </div>
-                                    <p className="text-[10px] uppercase tracking-widest font-bold">Your Photo Here</p>
-                                </div>
-                                {/* 
-                                once you have a photo, place it in public/profile.png and uncomment:
-                                <Image src="/profile.png" alt="Vedant Singh" fill className="object-cover" /> 
-                                */}
+                            <div className="w-full h-full rounded-2xl overflow-hidden relative">
+                                <Image
+                                    src="/profile.jpg"
+                                    alt="Vedant Singh"
+                                    fill
+                                    className="object-cover scale-110 group-hover:scale-125 transition-transform duration-700"
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
                             </div>
                         </motion.div>
 
