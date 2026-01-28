@@ -38,16 +38,6 @@ const projects = [
         github: "#",
         category: "Mobile",
         color: "from-cyan-500/20 to-purple-500/20"
-    },
-    {
-        title: "Portfolio Website",
-        description: "Modern portfolio with glassmorphism, advanced animations, and responsive design.",
-        tech: ["Next.js", "React", "Tailwind", "Framer Motion"],
-        icon: <Layout className="w-6 h-6" />,
-        link: "#",
-        github: "#",
-        category: "Web",
-        color: "from-purple-500/20 to-secondary/20"
     }
 ];
 
@@ -82,8 +72,8 @@ export const Projects = () => {
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 className={`px-6 py-2 rounded-full border transition-all duration-300 font-medium ${activeCategory === cat
-                                        ? "bg-primary border-primary text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]"
-                                        : "bg-white/5 border-white/10 text-white/60 hover:border-white/20"
+                                    ? "bg-primary border-primary text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                                    : "bg-white/5 border-white/10 text-white/60 hover:border-white/20"
                                     }`}
                             >
                                 {cat}
