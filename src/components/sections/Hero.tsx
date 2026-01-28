@@ -147,19 +147,29 @@ export const Hero = () => {
                         <motion.div
                             animate={{ y: [0, -15, 0] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                            className="w-full h-full rounded-3xl overflow-hidden glass border-2 border-white/20 shadow-2xl relative z-10 p-2"
+                            className="w-full h-full rounded-full overflow-hidden glass border-2 border-white/20 shadow-[0_0_50px_rgba(168,85,247,0.3)] relative z-10 p-1"
                         >
-                            <div className="w-full h-full rounded-2xl overflow-hidden relative">
+                            <div
+                                className="w-full h-full rounded-full overflow-hidden relative"
+                                style={{
+                                    maskImage: "radial-gradient(circle, black 65%, transparent 100%)",
+                                    WebkitMaskImage: "radial-gradient(circle, black 65%, transparent 100%)"
+                                }}
+                            >
                                 <Image
                                     src="/profile.jpg"
                                     alt="Vedant Singh"
                                     fill
-                                    className="object-cover scale-110 group-hover:scale-125 transition-transform duration-700"
+                                    className="object-cover scale-110"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-secondary/5 mix-blend-overlay" />
                             </div>
                         </motion.div>
+
+                        {/* Background Glows for Photo */}
+                        <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse" />
+                        <div className="absolute -inset-10 bg-secondary/10 rounded-full blur-2xl -z-10 animate-pulse-slow" />
 
                         {/* Floating Tech Badges */}
                         <motion.div
