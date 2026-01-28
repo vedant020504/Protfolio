@@ -108,7 +108,7 @@ export const Contact = () => {
                         <GlassCard className="p-8">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Web3Forms Access Key - GET YOURS AT https://web3forms.com/ */}
-                                <input type="hidden" name="access_key" value="7369165d-4f65-4d00-9831-29e614457788" />
+                                <input type="hidden" name="access_key" value="03c8c96d-c3af-4da2-89e7-91c8392330ed" />
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
